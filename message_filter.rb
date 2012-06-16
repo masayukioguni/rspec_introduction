@@ -1,9 +1,8 @@
 class MessageFilter
-  def initialize(word)
-    @word = word
+  def initialize(*words)
+    @words = *words
   end
   def detect?(text)
-  	return text.include?(@word)
+  	@words.any?{|w| text.include?(w) }
   end
-
 end
