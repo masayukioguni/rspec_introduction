@@ -6,11 +6,14 @@ require './message_filter'
      it { should be_detect('hello from foo') }
      it { should_not be_detect('hello, world!') }
    end
-   describe 'with argument "foo"' do
+   context 'with argument "foo"' do
      subject { MessageFilter.new('foo') }
      it_should_behave_like 'MessageFilter with argument "foo"'
+     it 'ng_words should not be empty' do
+       subject.ng_words.empty?.should == false
+    end
    end
-   describe 'with argument "foo","bar"' do
+   context 'with argument "foo","bar"' do
      subject { MessageFilter.new('foo', 'bar') }
      it { should be_detect('hello from bar') }
      it_should_behave_like 'MessageFilter with argument "foo"'
